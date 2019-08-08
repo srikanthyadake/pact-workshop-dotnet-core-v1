@@ -9,15 +9,15 @@ namespace tests
     // mock server for Pact used by all the tests.
     // XUnit can use a Class Fixture for this.
     // See: https://goo.gl/hSq4nv
-    public class ConsumerPactClassFixture : IDisposable
+    public class ConsumerPactClassFixture
     {
-        public IPactBuilder PactBuilder { get; private set; }
+		public IPactBuilder PactBuilder { get; private set; }
         public IMockProviderService MockProviderService { get; private set; }
 
         public int MockServerPort { get { return 9222; } }
         public string MockProviderServiceBaseUri { get { return String.Format("http://localhost:{0}", MockServerPort); } }
-
-        public ConsumerPactClassFixture()
+		
+		public ConsumerPactClassFixture()
         {
             // Using Spec version 2.0.0 more details at https://goo.gl/UrBSRc
             var pactConfig = new PactConfig
@@ -31,11 +31,11 @@ namespace tests
 
             PactBuilder.ServiceConsumer("Consumer")
                        .HasPactWith("Provider");
-
-            MockProviderService = PactBuilder.MockService(MockServerPort);
+					   
+		    MockProviderService = PactBuilder.MockService(MockServerPort);
         }
-
-        #region IDisposable Support
+		
+		#region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)

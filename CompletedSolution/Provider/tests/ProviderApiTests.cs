@@ -20,7 +20,7 @@ namespace tests
         public ProviderApiTests(ITestOutputHelper output)
         {
             _outputHelper = output;
-            _providerUri = "http://localhost:9000";
+            _providerUri = "https://qa5.services.ascendon.tv";
             _pactServiceUri = "http://localhost:9001";
 
             _webHost = WebHost.CreateDefaultBuilder()
@@ -53,9 +53,9 @@ namespace tests
             //Act / Assert
             IPactVerifier pactVerifier = new PactVerifier(config);
             pactVerifier.ProviderState($"{_pactServiceUri}/provider-states")
-                .ServiceProvider("Provider", _providerUri)
-                .HonoursPactWith("Consumer")
-                .PactUri(@"..\..\..\..\..\pacts\consumer-provider.json")
+                .ServiceProvider("CreateSessionAPI", _providerUri)
+                .HonoursPactWith("CreateSessionConsumer")
+                .PactUri("D:\\singleview\\pact\\POC\\Consumers\\CreateSessionConsumer\\pacts\\createsessionconsumer-createsessionapi.json")
                 .Verify();
         }
 

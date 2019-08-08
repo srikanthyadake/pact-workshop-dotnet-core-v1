@@ -1,0 +1,60 @@
+{
+  "consumer": {
+    "name": "CreateSessionConsumer"
+  },
+  "provider": {
+    "name": "CreateSessionAPI"
+  },
+  "interactions": [
+    {
+      "description": "A invalid get call",
+      "providerState": "New",
+      "request": {
+        "method": "get",
+        "path": "/Security/CreateSession"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "Fault": {
+            "Code": 27
+          }
+        }
+      }
+    },
+    {
+      "description": "Login with eastlink user id",
+      "providerState": "New",
+      "request": {
+        "method": "post",
+        "path": "/Security/CreateSession",
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "Login": "eastLinkUser",
+          "Password": "eastLinkUser1"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "SessionSummary": {
+            "Active": true
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
